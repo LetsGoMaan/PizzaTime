@@ -3,6 +3,7 @@ import { Header } from "./components/Header.tsx";
 import { Categories } from "./components/Categories.tsx";
 import { Sort } from "./components/Sort.tsx";
 import { PizzaBlock } from "./components/PizzaBlock.tsx";
+import pizzas from "./assets/pizzas.json";
 
 export const App = () => {
   return (
@@ -17,8 +18,9 @@ export const App = () => {
             </div>
             <h2 className="content__title">Все пиццы</h2>
             <div className="content__items">
-              <PizzaBlock title={"Мексиканская"} price={500} />
-              <PizzaBlock title={"Чизбургер"} price={350} />
+              {pizzas.map((obj) => (
+                <PizzaBlock {...obj} />
+              ))}
             </div>
           </div>
         </div>
