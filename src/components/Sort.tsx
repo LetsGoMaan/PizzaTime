@@ -1,4 +1,15 @@
+import { useState } from "react";
+
 export const Sort = () => {
+  const [open, setOpen] = useState(false);
+  const [activeSortNameList, setActiveSortNameList] = useState(0);
+  const sortNameList = ["популярности", "цене", "алфавиту"];
+
+  const selectClosePopupCategory = (i: number) => {
+    setActiveSortNameList(i);
+    setOpen(false);
+  };
+
   return (
     <div className="sort">
       <div className="sort__label">
@@ -15,15 +26,25 @@ export const Sort = () => {
           />
         </svg>
         <b>Сортировка по:</b>
-        <span>популярности</span>
+        <span onClick={() => setOpen(!open)}>
+          {sortNameList[activeSortNameList]}
+        </span>
       </div>
-      <div className="sort__popup">
-        <ul>
-          <li className="active">популярности</li>
-          <li>цене</li>
-          <li>алфавиту</li>
-        </ul>
-      </div>
+      {open && (
+        <div className="sort__popup">
+          <ul>
+            {sortNameList.map((listName, i) => (
+              <li
+                key={i}
+                onClick={() => selectClosePopupCategory(i)}
+                className={activeSortNameList === i ? "active" : ""}
+              >
+                {listName}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };
