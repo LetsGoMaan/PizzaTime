@@ -1,4 +1,4 @@
-import plus from "../assets/img/plus.svg";
+import plus from "../../assets/img/plus.svg";
 import { useState } from "react";
 
 type PropsType = {
